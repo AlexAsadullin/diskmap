@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>ru</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>ru</string>
+		<string>en</string>
+	</array>
+	<key>CFBundleExecutable</key>
+	<string>DiskMap</string>
+	<key>CFBundleIdentifier</key>
+	<string>org.diskmap.DiskMap</string>
+	<key>CFBundleName</key>
+	<string>DiskMap</string>
+	<key>CFBundleDisplayName</key>
+	<string>DiskMap</string>
+	<key>CFBundleIconFile</key>
+	<string>AppIcon</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>__VERSION__</string>
+	<key>CFBundleVersion</key>
+	<string>__BUILD__</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>13.0</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.utilities</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+	<key>NSSupportsAutomaticGraphicsSwitching</key>
+	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>DiskMap contributors. MIT License.</string>
+	<key>NSDesktopFolderUsageDescription</key>
+	<string>DiskMap reads file sizes on the Desktop to show what takes up disk space. File contents are never read.</string>
+	<key>NSDocumentsFolderUsageDescription</key>
+	<string>DiskMap reads file sizes in Documents to show what takes up disk space. File contents are never read.</string>
+	<key>NSDownloadsFolderUsageDescription</key>
+	<string>DiskMap reads file sizes in Downloads to show what takes up disk space. File contents are never read.</string>
+	<key>NSRemovableVolumesUsageDescription</key>
+	<string>DiskMap reads file sizes on external disks to show what takes up space.</string>
+	<key>NSNetworkVolumesUsageDescription</key>
+	<string>DiskMap reads file sizes on network volumes to show what takes up space.</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>DiskMap asks Finder to move files to the Trash.</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Folder</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.folder</string>
+				<string>public.volume</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>DiskMap Scan</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.diskmap.scan</string>
+			</array>
+		</dict>
+	</array>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeIdentifier</key>
+			<string>org.diskmap.scan</string>
+			<key>UTTypeDescription</key>
+			<string>DiskMap Scan Result</string>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>diskmap</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,27 @@
+#!/bin/sh
+# Command line entry point. Install with:
+#   sudo install -m 755 scripts/diskmap /usr/local/bin/diskmap
+#
+#   diskmap <path>          open DiskMap and scan <path>
+#   diskmap --csv <path>    print a CSV list without the interface (see --help)
+APP="${DISKMAP_APP:-}"
+if [ -z "$APP" ]; then
+    for candidate in "/Applications/DiskMap.app" "$HOME/Applications/DiskMap.app"; do
+        [ -d "$candidate" ] && APP="$candidate" && break
+    done
+fi
+[ -n "$APP" ] || { echo "diskmap: DiskMap.app not found (set DISKMAP_APP)" >&2; exit 1; }
+BIN="$APP/Contents/MacOS/DiskMap"
+
+case "$1" in
+    --csv|--help|-h) exec "$BIN" "$@" ;;
+esac
+
+if [ $# -eq 0 ]; then
+    exec open -a "$APP"
+fi
+for p in "$@"; do
+    [ -e "$p" ] || { echo "diskmap: $p: no such file or folder" >&2; exit 1; }
+    abs=$(cd "$(dirname "$p")" && printf '%s/%s' "$(pwd -P)" "$(basename "$p")")
+    open -a "$APP" "$abs"
+done
