@@ -11,7 +11,7 @@ cd "$(dirname "$0")/.."
 
 VERSION="${VERSION:-1.0.0}"
 APP="build/DiskMap.app"
-DMG="build/DiskMap-$VERSION.dmg"
+DMG="build/DiskMap.dmg"
 STAGE="build/dmg"
 
 [ -d "$APP" ] || { echo "Run scripts/build_app.sh first"; exit 1; }

@@ -1,5 +1,23 @@
 # DiskMap
 
+<a id="download"></a>
+## ⬇️ Скачать / Download
+
+### **[Скачать DiskMap.zip](https://github.com/AlexAsadullin/diskmap/releases/latest/download/DiskMap.zip)** · [DiskMap.dmg](https://github.com/AlexAsadullin/diskmap/releases/latest/download/DiskMap.dmg) · [все версии](https://github.com/AlexAsadullin/diskmap/releases)
+
+macOS 13 Ventura и новее, Apple Silicon и Intel.
+
+1. Скачайте **DiskMap.zip**, откройте его (двойной щелчок) и перетащите **DiskMap.app** в папку **Программы**.
+2. Первый запуск. Приложение не нотаризовано Apple, поэтому macOS спросит разрешения один раз:
+   - **macOS 15 Sequoia и новее:** откройте DiskMap, в окне предупреждения нажмите **Готово**. Затем **Системные настройки → Конфиденциальность и безопасность**, прокрутите вниз и нажмите **Всё равно открыть** рядом с DiskMap, подтвердите паролем.
+   - **macOS 13–14:** щёлкните по DiskMap **правой кнопкой → Открыть → Открыть**.
+   - **Или в Терминале:** `xattr -dr com.apple.quarantine /Applications/DiskMap.app`
+3. Выдайте **Полный доступ к диску**, чтобы видеть все папки: **Системные настройки → Конфиденциальность и безопасность → Полный доступ к диску → включить DiskMap**.
+
+*English: download **DiskMap.zip**, unzip, drag DiskMap.app to Applications. The app is not notarized: on macOS 15+ open it once, press Done, then go to System Settings → Privacy & Security → **Open Anyway**; on macOS 13–14 right-click → Open. Then grant Full Disk Access.*
+
+---
+
 Нативное приложение для macOS, которое за один взгляд показывает, что занимает место на диске, и позволяет сразу его освободить.
 
 Диск рисуется картой прямоугольников (treemap): **площадь = размер файла**, **цвет = категория папки** (красный — Applications, синий — Movies, жёлтый — Library и т. д.). Можно приближаться к папкам, искать по имени и удалять файлы в Корзину прямо с карты, с отменой через ⌘Z.
@@ -25,7 +43,7 @@ macOS 13 Ventura и новее, Apple Silicon или Intel.
 
 ## Установка
 
-Готовой подписанной сборки пока нет — соберите из исходников (нужны только Command Line Tools, Xcode не обязателен):
+Проще всего — скачать готовое приложение (см. [Скачать](#download) в начале страницы). Сборка из исходников (нужны только Command Line Tools, Xcode не обязателен):
 
 ```sh
 xcode-select --install            # если Command Line Tools ещё не установлены
@@ -35,8 +53,6 @@ scripts/build_app.sh              # → build/DiskMap.app (arm64 + x86_64)
 cp -R build/DiskMap.app /Applications/
 ```
 
-Затем выдайте приложению **Полный доступ к диску** (Системные настройки → Конфиденциальность и безопасность → Полный доступ к диску), иначе часть папок будет показана как «Нет доступа». Подробности — в [руководстве](docs/USER_GUIDE.md).
-
 Консольная команда:
 
 ```sh
@@ -45,19 +61,21 @@ diskmap ~/Downloads                     # открыть приложение и
 diskmap --csv ~ --depth 2 > home.csv    # список без интерфейса
 ```
 
-## Сборка дистрибутива
+## Сборка дистрибутива и выпуск
 
 ```sh
-scripts/build_app.sh                    # ad-hoc подпись, запускается на этом Mac
-scripts/make_dmg.sh                     # build/DiskMap-1.0.0.dmg
+scripts/build_app.sh                    # build/DiskMap.app, ad-hoc подпись
+scripts/make_dmg.sh                     # build/DiskMap.dmg
+VERSION=1.0.1 scripts/release.sh        # сборка + DiskMap.zip + DiskMap.dmg + GitHub Release
 ```
 
-Подпись Developer ID и нотаризация:
+Ссылки «Скачать» в начале README ведут на последний выпуск, поэтому после `release.sh` их менять не нужно.
+
+Подпись Developer ID и нотаризация (тогда пользователям не нужно разрешать запуск вручную):
 
 ```sh
 xcrun notarytool store-credentials diskmap --apple-id you@example.com --team-id TEAMID
-SIGN_IDENTITY="Developer ID Application: Name (TEAMID)" scripts/build_app.sh
-SIGN_IDENTITY="Developer ID Application: Name (TEAMID)" NOTARY_PROFILE=diskmap scripts/make_dmg.sh
+SIGN_IDENTITY="Developer ID Application: Name (TEAMID)" NOTARY_PROFILE=diskmap VERSION=1.0.1 scripts/release.sh
 ```
 
 ## Проверки
