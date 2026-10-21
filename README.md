@@ -5,6 +5,14 @@
 
 ### **[Скачать DiskMap.zip](https://github.com/AlexAsadullin/diskmap/releases/latest/download/DiskMap.zip)** · [DiskMap.dmg](https://github.com/AlexAsadullin/diskmap/releases/latest/download/DiskMap.dmg) · [все версии](https://github.com/AlexAsadullin/diskmap/releases)
 
+![DiskMap: карта всего диска — площадь = размер, цвет = категория папки](docs/images/map.png)
+
+*Весь диск на одной карте: свободное место, папки пользователя, система, приложения. Справа — инспектор и 20 крупнейших файлов, внизу — легенда категорий с объёмами.*
+
+<img src="docs/images/scanning.png" alt="DiskMap: сканирование диска" width="49%">
+
+*Сканирование: прогресс, текущая папка, число файлов и найденный объём.*
+
 macOS 13 Ventura и новее, Apple Silicon и Intel.
 
 1. Скачайте **DiskMap.zip**, откройте его (двойной щелчок) и перетащите **DiskMap.app** в папку **Программы**.
